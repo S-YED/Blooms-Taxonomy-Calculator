@@ -1,29 +1,28 @@
 const taxonomy = {
-  "L1": ["define", "list", "recall", "name", "identify", "describe", "state", "label", "tell", "show", "recognize", "match", "select", "choose"],
-  "L2": ["explain", "describe", "classify", "summarize", "interpret", "contrast", "differentiate", "exemplify", "illustrate"],
-  "L3": ["apply", "demonstrate", "execute", "solve", "complete", "construct", "develop", "utilize", "calculate"],
-  "L4": ["analyze", "differentiate", "compare", "organize", "outline", "structure", "identify", "attribute", "deconstruct"],
-  "L5": ["evaluate", "justify", "critique", "defend", "assess", "judge", "rate", "argue", "validate"],
-  "L6": ["create", "design", "construct", "develop", "imagine", "compose", "formulate", "generate", "plan"]
+  "L1 - REMEMBER": ["define", "duplicate", "list", "memorize", "recall", "repeat", "state"],
+  "L2 - UNDERSTAND": ["classify", "describe", "discuss", "explain", "identify", "locate", "recognize", "report", "select", "translate"],
+  "L3 - APPLY": ["execute", "implement", "solve", "use", "demonstrate", "interpret", "operate", "schedule", "sketch"],
+  "L4 - ANALYZE": ["differentiate", "organize", "relate", "compare", "contrast", "distinguish", "examine", "experiment", "question", "test"],
+  "L5 - EVALUATE": ["appraise", "argue", "defend", "judge", "select", "support", "value", "critique", "weigh"],
+  "L6 - CREATE": ["design", "assemble", "construct", "conjecture", "develop", "formulate", "author", "investigate"]
 };
 
 function checkLevel(event) {
-  // Prevent the form from submitting
   event.preventDefault();
 
   const word = document.getElementById('word').value.toLowerCase();
-  const levelsFound = [];
+  let highestLevel = null;
 
+  // Iterate over each level to find the highest one containing the word
   for (const level in taxonomy) {
     if (taxonomy[level].includes(word)) {
-      levelsFound.push(level);
+      highestLevel = level; // Assigns the highest level in sequence
     }
   }
 
-  const resultElement = document.getElementById('result');
-  if (levelsFound.length > 0) {
-    resultElement.innerText = `The term "${word}" belongs to the following level(s): ${levelsFound.join(', ')}`;
-  } else {
-    resultElement.innerText = `The term "${word}" is not in the Bloom's Taxonomy list.`;
-  }
+  // Display the result with the highest applicable level
+  document.getElementById('result').innerText = 
+    highestLevel ? 
+    `The term "${word}" belongs to ${highestLevel}` : 
+    `The term "${word}" is not in the Bloom's Taxonomy list.`;
 }
