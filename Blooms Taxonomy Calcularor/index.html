@@ -8,17 +8,20 @@
 </head>
 <body>
   <h1>Bloom's Taxonomy Level Checker</h1>
-  <form>
+  <div class="image-container">
+    <img src="images/blooms-taxonomy-image.jpeg" alt="Bloom's Taxonomy" width="400" height="250">
+  </div>
+  <form onsubmit="checkLevel(event)">
     <label for="word">Enter a verb (e.g., define):</label>
     <input type="text" id="word" placeholder="Enter a verb (e.g., define)">
     <button type="submit">Check Level</button>
   </form>
 
   <p id="result"></p>
+
   <script src="app.js"></script>
   <footer>
-    <p>&copy; 2024 | <a href="http://syed.rf.gd">SYED KHAJA MOINUDDIN |</a>. All rights reserved.</p>
+    <p>&copy; 2024 | <a href="http://syed.rf.gd">SYED KHAJA MOINUDDIN</a>. All rights reserved.</p>
   </footer>
 </body>
 </html>
-
